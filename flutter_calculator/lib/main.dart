@@ -22,7 +22,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var userQuestion = '' ;
   var userAnswer = '' ;
-  final textStyle = TextStyle(fontSize: 30,);
+  final textStyle = TextStyle(fontSize: 32);
 
   final List<String> buttons = [
     'C',
@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
     '9',
     '8',
     '7',
-    '*',
+    'x',
     '6',
     '5',
     '4',
@@ -43,7 +43,6 @@ class _MyHomePageState extends State<MyHomePage> {
     '+',
     '0',
     '.',
-    'Ans',
     '=',
   ];
 
@@ -51,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
     if(
       x=='%'||
       x=='/'||
-      x=='*'||
+      x=='x'||
       x=='-'||
       x=='+'||
       x=='='
@@ -63,6 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void equalPressed(){
     String finalQuestion = userQuestion;
+    finalQuestion = finalQuestion.replaceAll('x', '*');
 
     Parser p = Parser();
     Expression exp = p.parse(finalQuestion);
@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text(userQuestion, style: textStyle,)),
                   Container(
                     alignment: Alignment.centerRight,
-                    child: Text(userAnswer, style: textStyle,)),
+                    child: Text(userAnswer, style:TextStyle(fontSize: 40),)),
                 ]),
             )),
           Expanded(
